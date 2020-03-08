@@ -130,7 +130,7 @@ void fillMap(std::map<int, int> &boardMap)
 	// match up key to each index in gameboard
 	for (int i = 0; i < 20; i++)
 	{
-		boardMap[k] = i;
+		// std::cout << "k: " << k << " : " << i << "\n";
 		switch (k)
 		{
 		case 16:
@@ -143,6 +143,7 @@ void fillMap(std::map<int, int> &boardMap)
 			k = 41;
 			break;
 		}
+		boardMap[k] = i;
 		k++;
 	}
 }
