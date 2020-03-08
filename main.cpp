@@ -6,8 +6,12 @@ int main()
 		playerScore2,
 		row,
 		col,
-		counter = 0,
-		*counterPtr = &counter;
+		p1Score = 0,
+		&p1ScoreRef = p1Score,
+		p2Score = 0,
+		&p2ScoreRef = p2Score,
+		scorePool = 0,
+		&spRef = scorePool;
 	std::string player1, player2, turn;
 	std::map<int, int> gameboardMap; // Used to map card position to a gameboard index
 	std::vector<int> indexV;
@@ -79,6 +83,10 @@ int main()
 		// render gameboard with second asked position
 		renderGameboard(gBoardPtr, indexV);
 
+		p1Score = 9;
+		p2Score = 1;
+		spRef = 10;
+
 		// if the characters are alike
 		if (gameboard[indexV[0]] == gameboard[indexV[1]])
 		{
@@ -87,6 +95,13 @@ int main()
 			// Empty the picked cards
 			gameboard[indexV[0]] = 32;
 			gameboard[indexV[1]] = 32;
+
+			checkPoints(p1ScoreRef,
+						p2ScoreRef,
+						player1,
+						player2,
+						spRef,
+						turn);
 
 			pauseAndClear();
 		}

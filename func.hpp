@@ -9,6 +9,13 @@
 #include <unistd.h>
 
 void pauseAndClear();
+void pauseAndExit();
+void checkPoints(int *p1Score,
+				 int *p2Score,
+				 std::string &p1,
+				 std::string &p2,
+				 int *sp,
+				 std::string &turn);
 void shuffleBoard(char *gBoardPtr);
 void renderGameboard(char *gBoardPtr, std::vector<int> &indexV);
 void cardSelect(int row,
@@ -19,16 +26,72 @@ void cardSelect(int row,
 int intConcat(int n1, int n2);
 void fillMap(std::map<int, int> &boardMap);
 
+void pauseAndExit()
+{
+#if defined(__APPLE__)
+	system("read -n 1 -s -p \"Press enter to exit...\"");
+	system("quit");
+#elif defined(_WIN32)
+	system("pause");
+#elif defined(__gnu_linux__)
+	std::cout << "Press enter to continue...";
+	system("read -n 1 -s -p \"Press enter to exit...\n");
+#endif
+}
+
+void checkPoints(int &p1Score,
+				 int &p2Score,
+				 std::string &p1,
+				 std::string &p2,
+				 int &sp,
+				 std::string &turn)
+{
+	std::cout << "scorepool: " << sp << "\n"
+			  << "turn: " << turn << "\n"
+			  << "score1: " << p1Score << "\n"
+			  << "score2: " << p2Score << "\n"
+			  << "scoreadd: " << (p1Score + p2Score) << "\n";
+	if (turn == p1)
+	{
+		p1Score++;
+		sp++;
+	}
+	else if (turn == p2)
+	{
+		p2Score++;
+		sp++;
+	}
+
+	if (sp == (p1Score + p2Score))
+	{
+		if (p1Score > p2Score)
+		{
+			std::cout << p1 << " have won!\n";
+			pauseAndExit();
+		}
+		else if (p1Score == p2Score)
+		{
+			std::cout << "This ended in a tie!\n";
+			pauseAndExit();
+		}
+		else
+		{
+			std::cout << p2 << " have won!\n";
+			pauseAndExit();
+		}
+	}
+}
+
 void pauseAndClear()
 {
 #if defined(__APPLE__)
-	system("read -n 1 -s -p \"Press any key to continue...\"");
+	system("read -n 1 -s -p \"Press enter to continue...\"");
 	system("clear");
 #elif defined(_WIN32)
 	system("pause");
 	system("cls");
 #elif defined(__gnu_linux__)
-	std::cin.get();
+	std::cout << "Press enter to continue...";
 	system("clear");
 #endif
 }
@@ -48,21 +111,13 @@ void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 		}
 
 		if (i == indexV.at(0))
-		{
 			std::cout << "| " << gBoardPtr[indexV.at(0)] << " ";
-		}
 		else if (i == indexV.at(1))
-		{
 			std::cout << "| " << gBoardPtr[indexV.at(1)] << " ";
-		}
 		else if (gBoardPtr[i] == 32)
-		{
 			std::cout << "| " << gBoardPtr[i] << " ";
-		}
 		else
-		{
 			std::cout << "| # ";
-		}
 	}
 	std::cout << "|";
 }
@@ -112,9 +167,7 @@ void shuffleBoard(char *gBoardPtr)
 
 	// create new gameboard to leftshft all elements
 	for (int i = 0; i < 21; i++)
-	{
 		gBoardPtr[i] = gameBoard[i + 1];
-	}
 }
 
 // Concatenates integers
