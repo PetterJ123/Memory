@@ -19,38 +19,28 @@ int main()
 	indexV.push_back(-1);
 	char gameboard[20],
 		*gBoardPtr = gameboard;
-	bool h = true, gameloop = true;
+	bool cardPickedState = true, gameloop = true;
 
-	// maps the board to index
+	// Maps the board to index
 	fillMap(gameboardMap);
 
-	// shuffle function, fills gameboard with random characters
+	// Shuffle function, fills gameboard with random characters
 	shuffleBoard(gBoardPtr);
 
-	// asking for player names
+	// Asking for player names
 	std::cout << "Name of player 1:";
 	std::cin >> player1;
 
 	std::cout << "Name of player 2:";
 	std::cin >> player2;
 
-	// set turn to player1
+	// Set turn to player1
 	turn = player1;
 
-	// cheat
-	std::map<int, int>::iterator it = gameboardMap.begin();
-	int i = 0;
-	while (it != gameboardMap.end())
-	{
-		std::cout << it->first << " : " << it->second << " : " << gameboard[i] << "\n";
-		i++;
-		it++;
-	}
-
-	// gameloop keep game running
+	// Gameloop keep game running
 	while (gameloop)
 	{
-		// render gameboard
+		// Render gameboard
 		renderGameboard(gBoardPtr, indexV);
 
 		std::cout << "\n"
@@ -58,14 +48,14 @@ int main()
 				  << ", first card flip: ";
 		std::cin >> row >> col;
 
-		// flips card
+		// Flips card
 		flipCard(row,
 				 col,
 				 gameboardMap,
 				 indexV,
-				 h);
+				 cardPickedState);
 
-		// render gameboard with asked position
+		// Render gameboard with asked position
 		renderGameboard(gBoardPtr, indexV);
 
 		std::cout << "\n"
@@ -73,22 +63,22 @@ int main()
 				  << ", second card flip: ";
 		std::cin >> row >> col;
 
-		// flips the second card
+		// Flips the second card
 		flipCard(row,
 				 col,
 				 gameboardMap,
 				 indexV,
-				 h);
+				 cardPickedState);
 
-		// render gameboard with second asked position
+		// Render gameboard with second asked position
 		renderGameboard(gBoardPtr, indexV);
 
-		// if the characters are alike
+		// If the characters are matching
 		if (gameboard[indexV[0]] == gameboard[indexV[1]])
 		{
 			std::cout << "\nPOINT FOR " << turn << "\n";
 
-			// Empty the picked cards
+			// Remove picked cards from gameboard
 			gameboard[indexV[0]] = 32;
 			gameboard[indexV[1]] = 32;
 
@@ -103,11 +93,11 @@ int main()
 		}
 		else
 		{
-			std::cout << "\nNO POINT\n";
+			std::cout << "\nNO POINT FOR " << turn << "\n";
 			pauseAndClear();
 		}
 
-		// changes turn
+		// Changes player turn
 		if (turn == player1)
 			turn = player2;
 		else if (turn == player2)

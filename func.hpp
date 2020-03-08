@@ -30,14 +30,12 @@ void pauseAndExit()
 {
 #if defined(__APPLE__)
 	system("read -n 1 -s -p \"Press enter to exit...\"");
-	exit(EXIT_SUCCESS);
 #elif defined(_WIN32)
 	system("pause");
-	exit(EXIT_SUCCESS);
 #elif defined(__gnu_linux__)
 	system("read -n 1 -s -p \"Press enter to exit...\n");
-	exit(EXIT_SUCESS);
 #endif
+	exit(EXIT_SUCCESS);
 }
 
 void checkPoints(int &p1Score,
@@ -47,11 +45,6 @@ void checkPoints(int &p1Score,
 				 int &sp,
 				 std::string &turn)
 {
-	std::cout << "scorepool: " << sp << "\n"
-			  << "turn: " << turn << "\n"
-			  << "score1: " << p1Score << "\n"
-			  << "score2: " << p2Score << "\n"
-			  << "scoreadd: " << (p1Score + p2Score) << "\n";
 	if (turn == p1)
 	{
 		p1Score++;
@@ -83,6 +76,8 @@ void checkPoints(int &p1Score,
 	}
 }
 
+// pauses execution and clears console window
+// Macros for different pauses depending on platform
 void pauseAndClear()
 {
 #if defined(__APPLE__)
@@ -92,15 +87,14 @@ void pauseAndClear()
 	system("pause");
 	system("cls");
 #elif defined(__gnu_linux__)
-	std::cout << "Press enter to continue...";
+	system("read -n 1 -s -p \"Press enter to continue...\"");
 	system("clear");
 #endif
 }
 
-// renderfunktion
+// Renderfunction
 void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 {
-	// std::cout << ind1 << " : " << ind2 << "\n";
 	for (int i = 0; i < 20; i++)
 	{
 		if (i % 5 == 0)
@@ -123,7 +117,7 @@ void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 	std::cout << "|";
 }
 
-// shuffle funktion
+// Shuffle function
 void shuffleBoard(char *gBoardPtr)
 {
 	char gameBoard[20];
@@ -184,12 +178,12 @@ int intConcat(int n1, int n2)
 	return nr;
 }
 
-// fills the map with key values and their respective indexes
+// Fills the map with key values and their respective indexes
 void fillMap(std::map<int, int> &boardMap)
 {
 	int k = 11;
 
-	// match up key to each index in gameboard
+	// Match up key to each index in gameboard
 	for (int i = 0; i < 20; i++)
 	{
 		switch (k)
@@ -209,26 +203,25 @@ void fillMap(std::map<int, int> &boardMap)
 	}
 }
 
-// function to turn a card around
+// Function to turn a card around
 void flipCard(int row,
 			  int col,
 			  std::map<int, int> &gbmap,
 			  std::vector<int> &indexV,
-			  bool &h)
+			  bool &cardPickedState)
 {
 	int key = intConcat(row, col);
 	int gameboardIndex = gbmap.at(key);
-	// std::cout << "key: " << key << "; index: " << gameboardIndex << "\n";
 
-	if (h)
+	if (cardPickedState)
 	{
 		indexV[0] = gameboardIndex;
-		h = false;
+		cardPickedState = false;
 	}
 	else
 	{
 		indexV[1] = gameboardIndex;
-		h = true;
+		cardPickedState = true;
 	}
 }
 
