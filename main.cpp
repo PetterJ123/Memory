@@ -83,10 +83,6 @@ int main()
 		// render gameboard with second asked position
 		renderGameboard(gBoardPtr, indexV);
 
-		p1Score = 9;
-		p2Score = 1;
-		spRef = 10;
-
 		// if the characters are alike
 		if (gameboard[indexV[0]] == gameboard[indexV[1]])
 		{

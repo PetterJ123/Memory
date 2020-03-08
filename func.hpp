@@ -30,12 +30,13 @@ void pauseAndExit()
 {
 #if defined(__APPLE__)
 	system("read -n 1 -s -p \"Press enter to exit...\"");
-	system("quit");
+	exit(EXIT_SUCCESS);
 #elif defined(_WIN32)
 	system("pause");
+	exit(EXIT_SUCCESS);
 #elif defined(__gnu_linux__)
-	std::cout << "Press enter to continue...";
 	system("read -n 1 -s -p \"Press enter to exit...\n");
+	exit(EXIT_SUCESS);
 #endif
 }
 
