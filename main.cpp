@@ -2,9 +2,7 @@
 
 int main()
 {
-	int playerScore1,
-		playerScore2,
-		row,
+	int row,
 		col,
 		p1Score = 0,
 		&p1ScoreRef = p1Score,
@@ -14,12 +12,13 @@ int main()
 		&spRef = scorePool;
 	std::string player1, player2, turn;
 	std::map<int, int> gameboardMap; // Used to map card position to a gameboard index
+	// In c++11 ability to initialize with list at declaration is possible
 	std::vector<int> indexV;
 	indexV.push_back(-1);
 	indexV.push_back(-1);
 	char gameboard[20],
 		*gBoardPtr = gameboard;
-	bool cardPickedState = true, gameloop = true;
+	bool cardPickedState = true;
 
 	// Maps the board to index
 	fillMap(gameboardMap);
@@ -37,8 +36,8 @@ int main()
 	// Set turn to player1
 	turn = player1;
 
-	// Gameloop keep game running
-	while (gameloop)
+	// Gameloop keeps game running
+	while (true)
 	{
 		// Render gameboard
 		renderGameboard(gBoardPtr, indexV);

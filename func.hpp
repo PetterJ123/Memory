@@ -213,6 +213,7 @@ void flipCard(int row,
 	int key = intConcat(row, col);
 	int gameboardIndex = gbmap.at(key);
 
+	// Card state altenator, alternates each time a card is picked
 	if (cardPickedState)
 	{
 		indexV[0] = gameboardIndex;
