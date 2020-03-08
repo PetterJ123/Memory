@@ -52,6 +52,10 @@ void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 		{
 			std::cout << gBoardPtr[indexV.at(1)] << " ";
 		}
+		else if (gBoardPtr[i] == 32)
+		{
+			std::cout << gBoardPtr[i] << " ";
+		}
 		else
 		{
 			std::cout << "# ";
@@ -130,7 +134,6 @@ void fillMap(std::map<int, int> &boardMap)
 	// match up key to each index in gameboard
 	for (int i = 0; i < 20; i++)
 	{
-		// std::cout << "k: " << k << " : " << i << "\n";
 		switch (k)
 		{
 		case 16:
@@ -156,17 +159,17 @@ void flipCard(int row,
 			  bool &h)
 {
 	int key = intConcat(row, col);
-	int index = gbmap.at(key);
-	std::cout << "key: " << key << "; index: " << index << "\n";
+	int gameboardIndex = gbmap.at(key);
+	// std::cout << "key: " << key << "; index: " << gameboardIndex << "\n";
 
 	if (h)
 	{
-		indexV[0] = index;
+		indexV[0] = gameboardIndex;
 		h = false;
 	}
 	else
 	{
-		indexV[1] = index;
+		indexV[1] = gameboardIndex;
 		h = true;
 	}
 }
