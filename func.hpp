@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <map>
-#include <unistd.h>
+#include <time.h>
 
 void pauseAndClear();
 void pauseAndExit();
