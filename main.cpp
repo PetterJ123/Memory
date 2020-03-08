@@ -41,6 +41,7 @@ int main()
 		// Render gameboard
 		renderGameboard(gBoardPtr, indexV);
 
+		// Asks for first card
 		std::cout << "\n"
 				  << turn
 				  << ", first card flip: ";
