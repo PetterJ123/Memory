@@ -87,16 +87,25 @@ int main()
 						spRef,
 						turn);
 
+			// Prints current player points
+			std::cout << player1 << ": " << p1Score << " pts\n"
+					  << player2 << ": " << p2Score << " pts\n";
+
 			pauseAndClear();
 		}
 		else
 		{
 			std::cout << "\nNO POINT FOR " << turn << "\n";
+
+			std::cout << player1 << ": " << p1Score << " pts\n"
+					  << player2 << ": " << p2Score << " pts\n";
+
 			// Changes player turn
 			if (turn == player1)
 				turn = player2;
 			else if (turn == player2)
 				turn = player1;
+
 			pauseAndClear();
 		}
 

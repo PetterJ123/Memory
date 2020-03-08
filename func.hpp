@@ -56,7 +56,7 @@ void checkPoints(int &p1Score,
 	{
 		if (p1Score > p2Score)
 		{
-			std::cout << p1 << " have won!\nScoreboard:"
+			std::cout << p1 << " have won!\nScoreboard:\n"
 					  << p1 << ": " << p1Score << "\n"
 					  << p2 << ": " << p2Score << "\n";
 
@@ -71,7 +71,7 @@ void checkPoints(int &p1Score,
 		}
 		else
 		{
-			std::cout << p2 << " have won!\nScoreboard"
+			std::cout << p2 << " have won!\nScoreboard:\n"
 					  << p1 << ": " << p1Score << "\n"
 					  << p2 << ": " << p2Score << "\n";
 			pauseAndExit();
