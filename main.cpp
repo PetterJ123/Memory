@@ -12,7 +12,6 @@ int main()
 		&spRef = scorePool;
 	std::string player1, player2, turn;
 	std::map<int, int> gameboardMap; // Used to map card position to a gameboard index
-	// In c++11 ability to initialize with list at declaration is possible
 	std::vector<int> indexV;
 	indexV.push_back(-1);
 	indexV.push_back(-1);

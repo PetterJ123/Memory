@@ -56,27 +56,34 @@ void checkPoints(int &p1Score,
 		sp++;
 	}
 
-	if (sp == (p1Score + p2Score))
+	if (sp == 10)
 	{
 		if (p1Score > p2Score)
 		{
-			std::cout << p1 << " have won!\n";
+			std::cout << p1 << " have won!\nScoreboard:"
+					  << p1 << ": " << p1Score << "\n"
+					  << p2 << ": " << p2Score << "\n";
+
 			pauseAndExit();
 		}
 		else if (p1Score == p2Score)
 		{
-			std::cout << "This ended in a tie!\n";
+			std::cout << "This ended in a tie!\nScoreboard:\n"
+					  << p1 << ": " << p1Score << "\n"
+					  << p2 << ": " << p2Score << "\n";
 			pauseAndExit();
 		}
 		else
 		{
-			std::cout << p2 << " have won!\n";
+			std::cout << p2 << " have won!\nScoreboard"
+					  << p1 << ": " << p1Score << "\n"
+					  << p2 << ": " << p2Score << "\n";
 			pauseAndExit();
 		}
 	}
 }
 
-// pauses execution and clears console window
+// Pauses execution and clears console window
 // Macros for different pauses depending on platform
 void pauseAndClear()
 {
@@ -123,16 +130,16 @@ void shuffleBoard(char *gBoardPtr)
 	char gameBoard[20];
 	char character = 'a';
 
-	const int amnt = 20;
-	const int maxNum = 20;
+	const int amnt = 20;   // Amount of numbers to generate
+	const int maxNum = 20; // Highest allowed generated number
 	int randomNumber;
 	int randomNumberArr[amnt];
-	srand((unsigned)time(0));	  // seed for randomization
-	for (int i = 0; i < amnt; i++) // fill array with -1
+	srand((unsigned)time(0));	  // Seed for randomization
+	for (int i = 0; i < amnt; i++) // Fill array with -1
 		randomNumberArr[i] = -1;
 
 	int index = 0;
-	while (randomNumberArr[amnt - 1] == -1) // loop until array empty of -1
+	while (randomNumberArr[amnt - 1] == -1) // Loop until array empty of -1
 	{
 		randomNumber = (rand() % maxNum) + 1;
 		bool exists = false;
@@ -142,25 +149,25 @@ void shuffleBoard(char *gBoardPtr)
 				exists = true;
 		}
 
-		if (!exists) // if random number already not in array, insert random number
+		if (!exists) // If random number already not in array, insert random number
 		{
 			randomNumberArr[index] = randomNumber;
 			index++;
 		}
 	}
 
-	// place characters in gameboard
+	// Place characters in gameboard
 	for (int i = 0; i < 20; i++)
 	{
 		if (character > 106)
-			character = 97; // insert the doublettes in next iteration
+			character = 97; // Insert the doublettes in other half of the iteration
 
 		int ranNum = randomNumberArr[i];
 		gameBoard[ranNum] = character;
 		character++;
 	}
 
-	// create new gameboard to leftshft all elements
+	// Create new gameboard to leftshft all elements
 	for (int i = 0; i < 21; i++)
 		gBoardPtr[i] = gameBoard[i + 1];
 }
