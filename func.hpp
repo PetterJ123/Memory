@@ -18,11 +18,6 @@ void checkPoints(int *p1Score,
 				 std::string &turn);
 void shuffleBoard(char *gBoardPtr);
 void renderGameboard(char *gBoardPtr, std::vector<int> &indexV);
-void cardSelect(int row,
-				int col,
-				std::map<int, int> &gbmap,
-				std::vector<int> &indexV,
-				bool *state);
 int intConcat(int n1, int n2);
 void fillMap(std::map<int, int> &boardMap);
 
@@ -42,21 +37,22 @@ void checkPoints(int &p1Score,
 				 int &p2Score,
 				 std::string &p1,
 				 std::string &p2,
-				 int &sp,
+				 int &pairs,
 				 std::string &turn)
 {
 	if (turn == p1)
 	{
 		p1Score++;
-		sp++;
+		pairs++;
 	}
 	else if (turn == p2)
 	{
 		p2Score++;
-		sp++;
+		pairs++;
 	}
 
-	if (sp == 10)
+	// If pairnumber is 10 evaluate how game ended
+	if (pairs == 10)
 	{
 		if (p1Score > p2Score)
 		{

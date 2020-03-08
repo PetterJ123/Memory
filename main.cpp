@@ -92,14 +92,13 @@ int main()
 		else
 		{
 			std::cout << "\nNO POINT FOR " << turn << "\n";
+			// Changes player turn
+			if (turn == player1)
+				turn = player2;
+			else if (turn == player2)
+				turn = player1;
 			pauseAndClear();
 		}
-
-		// Changes player turn
-		if (turn == player1)
-			turn = player2;
-		else if (turn == player2)
-			turn = player1;
 
 		indexV[0] = -1;
 		indexV[1] = -1;
