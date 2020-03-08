@@ -41,26 +41,30 @@ void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 	{
 		if (i % 5 == 0)
 		{
-			std::cout << "\n";
+			if (i == 0)
+				std::cout << "\n";
+			else
+				std::cout << "| \n";
 		}
 
 		if (i == indexV.at(0))
 		{
-			std::cout << gBoardPtr[indexV.at(0)] << " ";
+			std::cout << "| " << gBoardPtr[indexV.at(0)] << " ";
 		}
 		else if (i == indexV.at(1))
 		{
-			std::cout << gBoardPtr[indexV.at(1)] << " ";
+			std::cout << "| " << gBoardPtr[indexV.at(1)] << " ";
 		}
 		else if (gBoardPtr[i] == 32)
 		{
-			std::cout << gBoardPtr[i] << " ";
+			std::cout << "| " << gBoardPtr[i] << " ";
 		}
 		else
 		{
-			std::cout << "# ";
+			std::cout << "| # ";
 		}
 	}
+	std::cout << "|";
 }
 
 // shuffle funktion

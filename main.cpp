@@ -83,13 +83,16 @@ int main()
 		if (gameboard[indexV[0]] == gameboard[indexV[1]])
 		{
 			std::cout << "\nPOINT FOR " << turn << "\n";
+
+			// Empty the picked cards
 			gameboard[indexV[0]] = 32;
 			gameboard[indexV[1]] = 32;
+
 			pauseAndClear();
 		}
 		else
 		{
-			std::cout << "\nno point\n";
+			std::cout << "\nNO POINT\n";
 			pauseAndClear();
 		}
 
