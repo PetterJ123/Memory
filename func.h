@@ -10,7 +10,7 @@
 
 void pauseAndClear();
 void pauseAndExit();
-void checkPoints(int *p1Score,
+void checkPoints(int &p1Score,
 				 int *p2Score,
 				 std::string &p1,
 				 std::string &p2,
@@ -130,7 +130,7 @@ void shuffleBoard(char *gBoardPtr)
 	const int maxNum = 20; // Highest allowed generated number
 	int randomNumber;
 	int randomNumberArr[amnt];
-	srand((unsigned)time(0));	  // Seed for randomization
+	srand((unsigned)time(0));	   // Seed for randomization
 	for (int i = 0; i < amnt; i++) // Fill array with -1
 		randomNumberArr[i] = -1;
 

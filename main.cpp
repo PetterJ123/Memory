@@ -5,7 +5,6 @@ int main()
 	int row,
 		col,
 		p1Score = 0,
-		&p1ScoreRef = p1Score,
 		p2Score = 0,
 		&p2ScoreRef = p2Score,
 		scorePool = 0,
@@ -81,7 +80,7 @@ int main()
 			gameboard[indexV[0]] = 32;
 			gameboard[indexV[1]] = 32;
 
-			checkPoints(p1ScoreRef,
+			checkPoints(p1Score,
 						p2ScoreRef,
 						player1,
 						player2,
