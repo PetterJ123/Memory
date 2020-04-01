@@ -11,10 +11,10 @@
 void pauseAndClear();
 void pauseAndExit();
 void checkPoints(int &p1Score,
-				 int *p2Score,
+				 int &p2Score,
 				 std::string &p1,
 				 std::string &p2,
-				 int *sp,
+				 int &sp,
 				 std::string &turn);
 void shuffleBoard(char *gBoardPtr);
 void renderGameboard(char *gBoardPtr, std::vector<int> &indexV);

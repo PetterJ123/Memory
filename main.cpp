@@ -6,9 +6,7 @@ int main()
 		col,
 		p1Score = 0,
 		p2Score = 0,
-		&p2ScoreRef = p2Score,
-		scorePool = 0,
-		&spRef = scorePool;
+		scorePool = 0;
 	std::string player1, player2, turn;
 	std::map<int, int> gameboardMap; // Used to map card position to a gameboard index
 	std::vector<int> indexV;
@@ -81,10 +79,10 @@ int main()
 			gameboard[indexV[1]] = 32;
 
 			checkPoints(p1Score,
-						p2ScoreRef,
+						p2Score,
 						player1,
 						player2,
-						spRef,
+						scorePool,
 						turn);
 
 			// Prints current player points
