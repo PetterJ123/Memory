@@ -3,5 +3,7 @@ test.cpp
 *.exe
 *.obj
 *.pdf
+*.out
+*.gch
 main
 *.zip
