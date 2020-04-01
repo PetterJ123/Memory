@@ -16,8 +16,8 @@ void checkPoints(int &p1Score,
 				 std::string &p2,
 				 int &sp,
 				 std::string &turn);
-void shuffleBoard(char *gBoardPtr);
-void renderGameboard(char *gBoardPtr, std::vector<int> &indexV);
+void shuffleBoard(char *gameboard);
+void renderGameboard(char *gameboard, std::vector<int> &indexV);
 int intConcat(int n1, int n2);
 void fillMap(std::map<int, int> &boardMap);
 
@@ -96,7 +96,7 @@ void pauseAndClear()
 }
 
 // Renderfunction
-void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
+void renderGameboard(char *gameboard, std::vector<int> &indexV)
 {
 	for (int i = 0; i < 20; i++)
 	{
@@ -109,11 +109,11 @@ void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 		}
 
 		if (i == indexV.at(0))
-			std::cout << "| " << gBoardPtr[indexV.at(0)] << " ";
+			std::cout << "| " << gameboard[indexV.at(0)] << " ";
 		else if (i == indexV.at(1))
-			std::cout << "| " << gBoardPtr[indexV.at(1)] << " ";
-		else if (gBoardPtr[i] == 32)
-			std::cout << "| " << gBoardPtr[i] << " ";
+			std::cout << "| " << gameboard[indexV.at(1)] << " ";
+		else if (gameboard[i] == 32)
+			std::cout << "| " << gameboard[i] << " ";
 		else
 			std::cout << "| # ";
 	}
@@ -121,9 +121,9 @@ void renderGameboard(char *gBoardPtr, std::vector<int> &indexV)
 }
 
 // Shuffle function
-void shuffleBoard(char *gBoardPtr)
+void shuffleBoard(char *gameboard)
 {
-	char gameBoard[20];
+	char resArray[20];
 	char character = 'a';
 
 	const int amnt = 20;   // Amount of numbers to generate
@@ -159,13 +159,13 @@ void shuffleBoard(char *gBoardPtr)
 			character = 97; // Insert the doublettes in other half of the iteration
 
 		int ranNum = randomNumberArr[i];
-		gameBoard[ranNum] = character;
+		resArray[ranNum] = character;
 		character++;
 	}
 
 	// Create new gameboard to leftshft all elements
 	for (int i = 0; i < 21; i++)
-		gBoardPtr[i] = gameBoard[i + 1];
+		gameboard[i] = resArray[i + 1];
 }
 
 // Concatenates integers

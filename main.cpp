@@ -12,15 +12,14 @@ int main()
 	std::vector<int> indexV;
 	indexV.push_back(-1);
 	indexV.push_back(-1);
-	char gameboard[20],
-		*gBoardPtr = gameboard;
+	char gameboard[20];
 	bool cardPickedState = true;
 
 	// Maps the board to index
 	fillMap(gameboardMap);
 
 	// Shuffle function, fills gameboard with random characters
-	shuffleBoard(gBoardPtr);
+	shuffleBoard(gameboard);
 
 	// Asking for player names
 	std::cout << "Name of player 1:";
@@ -36,7 +35,7 @@ int main()
 	while (true)
 	{
 		// Render gameboard
-		renderGameboard(gBoardPtr, indexV);
+		renderGameboard(gameboard, indexV);
 
 		// Asks for first card
 		std::cout << "\n"
@@ -52,7 +51,7 @@ int main()
 				 cardPickedState);
 
 		// Render gameboard with asked position
-		renderGameboard(gBoardPtr, indexV);
+		renderGameboard(gameboard, indexV);
 
 		std::cout << "\n"
 				  << turn
@@ -67,7 +66,7 @@ int main()
 				 cardPickedState);
 
 		// Render gameboard with second asked position
-		renderGameboard(gBoardPtr, indexV);
+		renderGameboard(gameboard, indexV);
 
 		// If the characters are matching
 		if (gameboard[indexV[0]] == gameboard[indexV[1]])
