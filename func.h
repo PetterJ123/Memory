@@ -123,7 +123,7 @@ void renderGameboard(char *gameboard, std::vector<int> &indexV)
 // Shuffle function
 void shuffleBoard(char *gameboard)
 {
-	char resArray[20];
+	char resArray[21];
 	char character = 'a';
 
 	const int amnt = 20;   // Amount of numbers to generate
@@ -165,7 +165,10 @@ void shuffleBoard(char *gameboard)
 
 	// Create new gameboard to leftshft all elements
 	for (int i = 0; i < 21; i++)
+	{
 		gameboard[i] = resArray[i + 1];
+		std::cout << i << " : " << i + 1 << "\n";
+	}
 }
 
 // Concatenates integers
