@@ -164,8 +164,11 @@ void shuffleBoard(char *gameboard)
 	}
 
 	// Create new gameboard to leftshft all elements
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 21; i++)
+	{
 		gameboard[i] = resArray[i + 1];
+		std::cout << i << " : " << i + 1 << "\n";
+	}
 }
 
 // Concatenates integers
